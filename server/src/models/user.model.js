@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
     default: "user",
     enum: ["user", "seller"],
   },
+  refreshToken: {
+    type: String,
+  },
 });
 
 const UserModel = mongoose.model("users", userSchema);
