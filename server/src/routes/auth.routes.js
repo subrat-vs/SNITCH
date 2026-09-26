@@ -3,34 +3,41 @@ import {
   loginValidator,
   registerValidator,
 } from "../validators/auth.validator.js";
-import { getMe, login, refresh, register } from "../controllers/auth.controller.js";
+import {
+  getMe,
+  login,
+  refresh,
+  register,
+} from "../controllers/auth.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
 /**
- * @POST /api/auth/register
- * @param req Express req
+ * @method POST
+ * @route /api/auth/register
  * @param req.body = { email, name, password }
  * @response res.status = 201 ( if successful )
  */
 router.post("/register", registerValidator, register);
 
 /**
- * @POST /api/auth/login
- * @param req Express req
+ * @method POST
+ * @route /api/auth/login
  * @param req.body = { email, password }
  * @response res.status = 200
  */
 router.post("/login", loginValidator, login);
 
 /**
- * @POST /api/auth/refresh
+ * @method
+ * @route POST /api/auth/refresh
  */
 router.post("/refresh", refresh);
 
 /**
- * @GET /api/auth/me
+ * @method GET
+ * @route /api/auth/me
  */
 router.get("/me", authenticate, getMe);
 
